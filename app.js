@@ -9,18 +9,20 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results})
+  res.render('index', { restaurants: restaurantList.results })
 })
 
 app.get('/search', (req, res) => {
-  const restaurants = restaurantList.results.filter((restaurant) => restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase()))
+  const restaurants = restaurantList.results.filter((restaurant) => restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase().trim()))
+  if (restaurants.length === 0) {
+    return res.render('search', { keyword: req.query.keyword })
+  }
   res.render('index', { restaurants: restaurants, keyword: req.query.keyword })
 })
 
-app.get('/restaurants/:restaurant_id', (req,res) => {
+app.get('/restaurants/:restaurant_id', (req, res) => {
   const restaurant = restaurantList.results.filter((restaurant) => restaurant.id == req.params.restaurant_id)
-  console.log(restaurant)
-  res.render('show', { restaurant: restaurant[0]})
+  res.render('show', { restaurant: restaurant[0] })
 })
 
 app.listen(port, () => {

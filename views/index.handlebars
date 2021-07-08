@@ -37,10 +37,15 @@
                 <span class="badge badge-pill badge-danger font-weight-normal">
                   {{ this.rating }}
                   <i class="fas fa-star fa-xs"></i>
-                </span>                
-                <span>
-                  <a href="/restaurants/{{ this._id }}/edit"><button>Edit</button></a>
                 </span>
+                <div>
+                  <span>
+                    <a href="/restaurants/{{ this._id }}/edit"><button>Edit</button></a>
+                  </span>
+                  <form action="/restaurants/{{ this._id }}/delete" method="post" style="display: inline;">
+                    <button type="submit">X</button>
+                  </form>
+                </div>
               </div>              
             </div>
           </div>

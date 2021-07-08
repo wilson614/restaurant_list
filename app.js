@@ -31,11 +31,16 @@ app.get('/', (req, res) => {
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter((restaurant) => restaurant.name.toLowerCase().includes(keyword.toLowerCase().trim()))
-  if (restaurants.length === 0) {
-    return res.render('search', { keyword })
-  }
-  res.render('index', { restaurants, keyword })
+    Restaurant.find()
+    .lean()
+    .then(restaurantList => {
+      const restaurants = restaurantList.filter((restaurant) => restaurant.name.toLowerCase().includes(keyword.toLowerCase().trim()))
+      if (restaurants.length === 0) {
+        return res.render('search', { keyword })
+      }
+      res.render('index', { restaurants, keyword })
+    })
+    .catch(error => console.log(error))   
 })
 
 app.get('/restaurants/new', (req, res) => {

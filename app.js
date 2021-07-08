@@ -1,5 +1,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 const restaurantList = require('./restaurant.json')
@@ -21,6 +22,7 @@ db.once('open', () => {
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Restaurant.find()
@@ -38,6 +40,10 @@ app.get('/search', (req, res) => {
   res.render('index', { restaurants, keyword })
 })
 
+app.get('/restaurants/new', (req, res) => {
+  res.render('new')
+})
+
 app.get('/restaurants/:restaurant_id', (req, res) => {
   const id = req.params.restaurant_id
   Restaurant.findById(id)
@@ -45,6 +51,21 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.log(error))  
 })
+
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const rating = req.body.rating
+  const description = req.body.description
+  Restaurant.create({ name, name_en, category, image, location, phone, rating, description })
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 
 app.listen(port, () => {
   console.log(`This server is running on localhost:${port}`)

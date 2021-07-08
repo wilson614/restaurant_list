@@ -1,6 +1,5 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
-const bodyParser = require('body-parser')
 const app = express()
 const port = 3000
 const restaurantList = require('./restaurant.json')
@@ -52,6 +51,14 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
     .catch(error => console.log(error))  
 })
 
+app.get('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.restaurant_id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
 app.post('/restaurants', (req, res) => {
   const name = req.body.name
   const name_en = req.body.name_en
@@ -63,6 +70,32 @@ app.post('/restaurants', (req, res) => {
   const description = req.body.description
   Restaurant.create({ name, name_en, category, image, location, phone, rating, description })
     .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurants/:restaurant_id/edit', (req, res) => {
+  const id = req.params.restaurant_id
+  const name = req.body.name
+  const name_en = req.body.name_en
+  const category = req.body.category
+  const image = req.body.image
+  const location = req.body.location
+  const phone = req.body.phone
+  const rating = req.body.rating
+  const description = req.body.description
+  return Restaurant.findById(id)
+    .then(restaurant => {
+      restaurant.name = name
+      restaurant.name_en = name_en
+      restaurant.category = category
+      restaurant.image = image
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.rating = rating
+      restaurant.description = description
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurants/${id}`))
     .catch(error => console.log(error))
 })
 

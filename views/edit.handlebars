@@ -1,0 +1,14 @@
+<div style="text-align:right; width:300px; margin: 0 auto;">
+  <form action="/restaurants/{{ restaurant._id }}/edit" method="post">
+    <div style="margin-bottom: 5px; margin-top: 15px">名稱：<input type="text" placeholder="name" name="name" value="{{ restaurant.name }}"></div>
+    <div style="margin-bottom: 5px;">英文：<input type="text" placeholder="name_en" name="name_en" value="{{ restaurant.name_en }}"></div>
+    <div style="margin-bottom: 5px;">類別：<input type="text" placeholder="category" name="category" value="{{ restaurant.category }}"></div>
+    <div style="margin-bottom: 5px;">圖片網址：<input type="text" placeholder="http://..." name="image" value="{{ restaurant.image }}"></div>
+    <div style="margin-bottom: 5px;">地址：<input type="text" placeholder="location" name="location" value="{{ restaurant.location }}"></div>
+    <div style="margin-bottom: 5px;">電話：<input type="text" placeholder="phone" name="phone" value="{{ restaurant.phone }}"></div>
+    <div style="margin-bottom: 5px;">評分：<input type="text" placeholder="rating" name="rating" value="{{ restaurant.rating }}"></div>
+    <div style="margin-bottom: 5px;">簡介：<input type="text" placeholder="description" name="description" value="{{ restaurant.description }}"></div>
+    <a href="/"><button type="button">Back</button></a>
+    <button type="submit">Save</button>    
+  </form>  
+</div>

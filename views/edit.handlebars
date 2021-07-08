@@ -1,14 +1,50 @@
-<div style="text-align:right; width:300px; margin: 0 auto;">
+<div style="width:500px; margin: 0 auto;">
   <form action="/restaurants/{{ restaurant._id }}/edit" method="post">
-    <div style="margin-bottom: 5px; margin-top: 15px">名稱：<input type="text" placeholder="name" name="name" value="{{ restaurant.name }}"></div>
-    <div style="margin-bottom: 5px;">英文：<input type="text" placeholder="name_en" name="name_en" value="{{ restaurant.name_en }}"></div>
-    <div style="margin-bottom: 5px;">類別：<input type="text" placeholder="category" name="category" value="{{ restaurant.category }}"></div>
-    <div style="margin-bottom: 5px;">圖片網址：<input type="text" placeholder="http://..." name="image" value="{{ restaurant.image }}"></div>
-    <div style="margin-bottom: 5px;">地址：<input type="text" placeholder="location" name="location" value="{{ restaurant.location }}"></div>
-    <div style="margin-bottom: 5px;">電話：<input type="text" placeholder="phone" name="phone" value="{{ restaurant.phone }}"></div>
-    <div style="margin-bottom: 5px;">評分：<input type="text" placeholder="rating" name="rating" value="{{ restaurant.rating }}"></div>
-    <div style="margin-bottom: 5px;">簡介：<input type="text" placeholder="description" name="description" value="{{ restaurant.description }}"></div>
-    <a href="/"><button type="button">Back</button></a>
-    <button type="submit">Save</button>    
-  </form>  
+    <div style="display: flex;">
+      <div>
+        <div class="form-group" style="margin: 15px 20px 30px 0;">
+          <label for="name">名稱</label>
+          <input type="text" class="form-control" placeholder="name" name="name" value="{{ restaurant.name }}">
+        </div>
+        <div class="form-group" style="margin: 0 20px 30px 0;">
+          <label for="name_en">英文名稱</label>
+          <input type="text" class="form-control" placeholder="name_en" name="name_en" value="{{ restaurant.name_en }}">
+        </div>
+        <div class="form-group" style="margin: 0 20px 30px 0;">
+          <label for="category">類別</label>
+          <input type="text" class="form-control" placeholder="category" name="category" value="{{ restaurant.category }}">
+        </div>
+        <div class="form-group" style="margin: 0 20px 30px 0;">
+          <label for="image">圖片網址</label>
+          <input type="text" class="form-control" placeholder="http://..." name="image" value="{{ restaurant.image }}">
+        </div>
+      </div>
+      <div>
+        <div class="form-group" style="margin: 15px 20px 30px 0">
+          <label for="location">地址</label>
+          <input type="text" class="form-control" placeholder="location" name="location" value="{{ restaurant.location }}">
+        </div>
+        <div class="form-group" style="margin: 0 20px 30px 0;">
+          <label for="phone">電話</label>
+          <input type="text" class="form-control" placeholder="phone" name="phone" value="{{ restaurant.phone }}">
+        </div>
+        <div class="form-group" style="margin: 0 20px 30px 0;">
+          <label for="rating">評分</label>
+          <input type="text" class="form-control" placeholder="1 ~ 5" name="rating" value="{{ restaurant.rating }}">
+        </div>
+        <div class="form-group" style="margin: 0 20px 30px 0;">
+          <label for="description">簡介</label>
+          <input type="text" class="form-control" placeholder="description" name="description" value="{{ restaurant.description }}">
+        </div>
+        <div style="text-align: right; margin-right:20px;">
+          <a href="/">
+            <button type="button" class="btn btn-secondary">
+              <i class="fas fa-long-arrow-alt-left"></i>
+            </button>
+          </a>
+          <button type="submit" class="btn btn-success"><i class="fas fa-save"></i></button>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>

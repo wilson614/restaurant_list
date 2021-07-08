@@ -39,14 +39,14 @@
 
       <div style="display: flex; justify-content:space-between">
         <span>
-          <a href="/"><button>Back</button></a>
+          <a href="/"><button class="btn btn-secondary"><i class="fas fa-long-arrow-alt-left"></i></button></a>
         </span>
         <div>
           <span>
-            <a href="/restaurants/{{ restaurant._id }}/edit"><button>Edit</button></a>
+            <a href="/restaurants/{{ restaurant._id }}/edit"><button class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button></a>
           </span>
           <form action="/restaurants/{{ restaurant._id }}/delete" method="post" style="display: inline;">
-            <button type="submit">X</button>
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
           </form>
         </div>        
       </div>

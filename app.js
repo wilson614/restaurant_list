@@ -5,6 +5,7 @@ const port = 3000
 const restaurantList = require('./restaurant.json')
 
 const mongoose = require('mongoose')
+const Restaurant = require('./models/restaurant')
 mongoose.connect('mongodb://localhost/restaurant-list', { useNewUrlParser: true, useUnifiedTopology: true })
 
 const db = mongoose.connection
@@ -22,7 +23,10 @@ app.set('view engine', 'handlebars')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { restaurants: restaurantList.results })
+  Restaurant.find()
+    .lean()
+    .then(restaurants => res.render('index', { restaurants }))
+    .catch(error => console.log(error))
 })
 
 app.get('/search', (req, res) => {
@@ -35,8 +39,11 @@ app.get('/search', (req, res) => {
 })
 
 app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.filter((restaurant) => restaurant.id == req.params.restaurant_id)
-  res.render('show', { restaurant: restaurant[0] })
+  const id = req.params.restaurant_id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('show', { restaurant }))
+    .catch(error => console.log(error))  
 })
 
 app.listen(port, () => {

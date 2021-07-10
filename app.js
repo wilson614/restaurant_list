@@ -35,9 +35,6 @@ app.get('/search', (req, res) => {
     .lean()
     .then(restaurantList => {
       const restaurants = restaurantList.filter((restaurant) => restaurant.name.toLowerCase().includes(keyword.toLowerCase().trim()))
-      if (restaurants.length === 0) {
-        return res.render('search', { keyword })
-      }
       res.render('index', { restaurants, keyword })
     })
     .catch(error => console.log(error))   

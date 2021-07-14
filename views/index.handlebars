@@ -44,7 +44,7 @@
                     <span>
                       <a href="/restaurants/{{ this._id }}/edit"><button class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button></a>
                     </span>
-                    <form action="/restaurants/{{ this._id }}/delete" method="post" style="display: inline;">
+                    <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
                       <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </form>
                   </div>

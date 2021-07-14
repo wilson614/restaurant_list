@@ -1,26 +1,26 @@
 <!-- search bar -->
-<div class="container search-bar">
-  <div class="search-bar-outer">
-    <div class="search-bar-inner">
-      <form action="/search">
-        <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
-            value="{{ keyword }}" aria-describedby="search-button">
-          <div class="input-group-append">
-            <button class="btn btn-major" type="submit" id="search-button"><i class="fas fa-search"></i></button>
-          </div>
-        </div>
-      </form>      
+<div class="container" style="display: flex; justify-content:space-between; padding: 30px 120px 0 120px">
+  <form action="/search">
+    <div class="input-group">      
+      <input class="form-control py-2 rounded-pill mr-1 pr-5" type="text" name="keyword" placeholder="&#xf002 輸入餐廳、分類"
+        aria-label="Restaurant Name..." value="{{ keyword }}" aria-describedby="search-button" style="font-family: Circular, 'Font Awesome 5 Free' !important; font-weight: 900;">      
     </div>
-    <div style="text-align: right; margin-top: 15px;">
-      <a href="/restaurants/new"><button class="btn btn-warning">Create</button></a>
+  </form>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
     </div>
   </div>
 </div>
 
 <!-- restaurant list -->
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">

@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   const sort = {}
   sort[sortItem] = sortMethod
 
-  if (!!sortItem) {
+  if (sortItem) {
     Restaurant.find()
       .lean()
       .sort(sort)
@@ -17,13 +17,13 @@ router.get('/', (req, res) => {
       })
       .catch(error => console.log(error))
   } else {
-  Restaurant.find()
-    .lean()
-    .then(restaurantList => {
-      const restaurants = restaurantList.filter((restaurant) => restaurant.name.toLowerCase().includes(keyword.toLowerCase().trim()))
-      res.render('index', { restaurants, keyword })
-    })
-    .catch(error => console.log(error))
+    Restaurant.find()
+      .lean()
+      .then(restaurantList => {
+        const restaurants = restaurantList.filter((restaurant) => restaurant.name.toLowerCase().includes(keyword.toLowerCase().trim()))
+        res.render('index', { restaurants, keyword })
+      })
+      .catch(error => console.log(error))
   }
 })
 

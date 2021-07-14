@@ -1,35 +1,44 @@
 <!-- search bar -->
-<div class="container" style="display: flex; justify-content:space-between; padding: 30px 120px 0 120px">
-  <form action="/search">
-    <div class="input-group">      
-      <input class="form-control py-2 rounded-pill mr-1 pr-5" type="text" name="keyword" placeholder="&#xf002 輸入餐廳、分類"
-        aria-label="Restaurant Name..." value="{{ keyword }}" aria-describedby="search-button" style="font-family: Circular, 'Font Awesome 5 Free' !important; font-weight: 900;">      
+<div class="container" style="padding: 30px 120px 0 120px">
+  <div class="row justify-content-between">
+    <div class="col-4">
+      <form action="/search">
+        <div class="input-group">
+          <input class="form-control py-2 rounded-pill mr-1 pr-5" type="text" name="keyword" placeholder="&#xf002 輸入餐廳、分類" aria-label="Restaurant Name..." value="{{ keyword }}" aria-describedby="search-button" style="font-family: Circular, 'Font Awesome 5 Free' !important; font-weight: 900;">
+          <input type="hidden" name="sortItem" value="{{ sortItem }}" />
+          <input type="hidden" name="sortMethod" value="{{ sortMethod }}" />
+        </div>
+      </form>      
     </div>
-  </form>
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      Dropdown button
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
+    <div class="col-4">
+      <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="width: 100%; text-align: left">
+          Sort
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="width: 100%;">
+          <a class="dropdown-item" href="/search?keyword={{ keyword }}&sortItem=name&sortMethod=asc">A → Z</a>
+          <a class="dropdown-item" href="/search?keyword={{ keyword }}&sortItem=name&sortMethod=desc">Z → A</a>
+          <a class="dropdown-item" href="/search?keyword={{ keyword }}&sortItem=category&sortMethod=asc">類別</a>
+          <a class="dropdown-item" href="/search?keyword={{ keyword }}&sortItem=location&sortMethod=asc">地區</a>
+          <a class="dropdown-item" href="/search?keyword={{ keyword }}&sortItem=rating&sortMethod=desc">評分</a>
+        </div>
+      </div>
+    </div>    
   </div>
+  
 </div>
 
 <!-- restaurant list -->
 <div class="container mt-3">
-  <div class="row">
-    <div class="col-md-10 col-12 mx-auto">
-      <div class="card-columns">
-        {{#if restaurants.length}}
-          {{#each restaurants}}
+  <div class="col-md-10 col-12 mx-auto">
+    <div class="row">
+      {{#if restaurants.length}}
+        {{#each restaurants}}
+        <div class="col-sm-4 d-flex">
           <a href="/restaurants/{{ this._id }}" class="text-secondary">
             <div class="card mb-3">
-              <img class="card-img-top" src="{{ this.image }}"
-                alt="{{ this.name }}">
+              <img class="card-img-top" src="{{ this.image }}" alt="{{ this.name }}">
               <div class="card-body p-3">
                 <h6 class="card-title mb-1">{{ this.name }}</h6>
                 <div class="restaurant-category mb-1">
@@ -42,20 +51,22 @@
                   </span>
                   <div>
                     <span>
-                      <a href="/restaurants/{{ this._id }}/edit"><button class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button></a>
+                      <a href="/restaurants/{{ this._id }}/edit"><button class="btn btn-primary"><i
+                            class="fas fa-pencil-alt"></i></button></a>
                     </span>
                     <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
                       <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                     </form>
                   </div>
-                </div>              
+                </div>
               </div>
             </div>
           </a>
-          {{/each}}
-        {{else}} 
-          <p>查無資料</p>
-        {{/if}}       
+        </div>        
+        {{/each}}
+      {{else}} 
+        <p>查無資料</p>
+      {{/if}}       
       </div>
     </div>
   </div>

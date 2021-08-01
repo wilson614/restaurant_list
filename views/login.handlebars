@@ -1,1 +1,15 @@
-<h2>Login</h2>
+<div class="row mt-5">
+  <div class="col-3 m-auto">
+    <div class="card card-body">
+      <form action="/users/login" method="post" class="form-group">
+        <h2 class="text-center">Login</h2>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter email" class="form-control mb-3">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter password" class="form-control mb-4">
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <p class="lead mt-4 mb-0">No Account? <a href="/users/register">Register</a></p>
+      </form>
+    </div>
+  </div>
+</div>

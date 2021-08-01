@@ -3,13 +3,15 @@
     <div class="card card-body">
       <form action="/users/register" method="post" class="form-group">
         <h2 class="text-center">Register</h2>
+        {{> message}}
+        <div class="d-flex justify-content-end"><small style="color: red;">必填*</small></div>        
         <label for="name">Name</label>
         <input type="text" name="name" id="name" placeholder="Enter name" class="form-control mb-3">
-        <label for="email">Email</label>
+        <label for="email">Email<span style="color: red;">*</span></label>
         <input type="email" name="email" id="email" placeholder="Enter email" class="form-control mb-3">
-        <label for="password">Password</label>
+        <label for="password">Password<span style="color: red;">*</span></label>
         <input type="password" name="password" id="password" placeholder="Enter password" class="form-control mb-4">
-        <label for="confirmPassword">Confirm Password</label>
+        <label for="confirmPassword">Confirm Password<span style="color: red;">*</span></label>
         <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" class="form-control mb-4">
         <button type="submit" class="btn btn-primary btn-block">Register</button>
         <p class="lead mt-4 mb-0">Have an Account? <a href="/users/login">Login</a></p>

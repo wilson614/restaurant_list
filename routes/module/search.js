@@ -3,12 +3,13 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const { keyword, sortItem, sortMethod } = req.query
   const sort = {}
   sort[sortItem] = sortMethod
 
   if (sortItem) {
-    Restaurant.find()
+    Restaurant.find({ userId })
       .lean()
       .sort(sort)
       .then(restaurantList => {
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
       })
       .catch(error => console.log(error))
   } else {
-    Restaurant.find()
+    Restaurant.find({ userId })
       .lean()
       .then(restaurantList => {
         const restaurants = restaurantList.filter((restaurant) => restaurant.name.toLowerCase().includes(keyword.toLowerCase().trim()))

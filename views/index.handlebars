@@ -10,6 +10,7 @@
         </div>
       </form>      
     </div>
+    <div class="col-4"><a href="/restaurants/new" class="btn btn-primary">Create</a></div>
     <div class="col-4">
       <div class="dropdown">
         <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -35,7 +36,7 @@
     <div class="row">
       {{#if restaurants.length}}
         {{#each restaurants}}
-        <div class="col-sm-4 d-flex">
+        <div class="col-sm-4">
           <a href="/restaurants/{{ this._id }}" class="text-secondary">
             <div class="card mb-3">
               <img class="card-img-top" src="{{ this.image }}" alt="{{ this.name }}">

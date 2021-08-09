@@ -19,8 +19,8 @@ module.exports = app => {
             if (!isMatch) {
               return done(null, false, { message: '輸入的信箱或密碼有誤！' })
             }
+            done(null, user)
           })
-        done(null, user)
       })
       .catch(error => done(error))
   }))

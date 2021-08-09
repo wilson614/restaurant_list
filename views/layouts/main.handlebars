@@ -21,7 +21,7 @@
         <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
           width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
         我的餐廳清單
-      </a>
+      </a>      
       <div style="text-align: right;">
         {{#if isAuthenticated}}
         <a href="/users/logout"><button class="btn btn-warning">Logout</button></a>
@@ -32,10 +32,13 @@
     </div>
   </nav>
 
-  <div class="banner"></div>
-  
+  <div>
+    <div style="height: 0; overflow: visible;">{{> message}}</div>    
+    <div class="banner"></div>
+  </div>
+    
   <main>
-    <div class="container pb-5">
+    <div class="container pb-4">
       {{{ body }}}
     </div>
   </main>

@@ -44,10 +44,14 @@ router.post('/register', (req, res) => {
             email,
             password: hash
           })
-        })
-        .then(() => {
-          req.flash('success_msg', '註冊成功！')
-          res.redirect('/users/login')
+            .then(user => {
+              req.login(user, (error) => {
+                if (error) { return console.log(error) }
+                req.flash('success_msg', '註冊成功！')
+                return res.redirect('/')
+              })
+            })
+            .catch(error => console.log(error))
         })
         .catch(error => console.log(error))
     })

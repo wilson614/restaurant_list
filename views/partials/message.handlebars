@@ -1,34 +1,36 @@
 {{#if warning_msg}}
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>{{ warning_msg }}</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <div class="d-flex justify-content-center">
+    <strong>{{ warning_msg }}</strong>
+  </div>
 </div>
 {{/if}}
 {{#if success_msg}}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-  <strong>{{ success_msg }}</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <div class="d-flex justify-content-center">
+    <strong>{{ success_msg }}</strong>
+  </div>
 </div>
 {{/if}}
 {{#if loginFailed_msg}}
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>{{ loginFailed_msg }}</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <div class="d-flex justify-content-center">
+    <strong>{{ loginFailed_msg }}</strong>
+  </div>
 </div>
 {{/if}}
 {{#if errors}}
 {{#each errors}}
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <strong>{{ this.message }}</strong>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+<div class="alert alert-danger alert-dismissible fade show mb-1" role="alert">
+  <div class="d-flex justify-content-center">
+    <strong>{{ this.message }}</strong>
+  </div>
 </div>
 {{/each}}
 {{/if}}
+
+<script>
+  setTimeout(function () {
+      $('.alert').hide();
+    }, 3000);
+</script>
